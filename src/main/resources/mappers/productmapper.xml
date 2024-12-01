@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.spring2.product.repository.ProductMapper">
+    <select id="findAll" resultType="product">
+        select *
+        from product
+    </select>
+
+    <select id="findById" parameterType="long" resultType="product">
+        select *
+        from product
+        where id= #{id}
+    </select>
+    <insert id="save" parameterType="product" useGeneratedKeys="true" keyProperty="id">
+        insert into product(name, content, price, productImg)
+        values (#{name}, #{content}, #{price}, #{productImg})
+    </insert>
+
+    <update id="update" parameterType="product">
+        update product
+        set name = #{name},
+            content = #{content},
+            price = #{price},
+            productImg = #{productImg}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        delete from product where id = #{id}
+    </delete>
+</mapper>
